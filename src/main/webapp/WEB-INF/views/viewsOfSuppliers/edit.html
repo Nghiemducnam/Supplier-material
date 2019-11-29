@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Edit this provider</h2>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form method="post" th:action="@{/suppliers-edit}" th:object="${suppliers}">
+    <input type="hidden" th:field="*{supplierId}"/>
+    <table>
+        <tr>
+            <td>Provider Name:</td>
+            <td><input type="text" th:field="*{supplierName}"/></td>
+        </tr>
+        <tr>
+            <td>Provider Description:</td>
+            <td><input type="text" th:field="*{supDescription}"/></td>
+        </tr>
+        <tr>
+            <td>Provider Address:</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr><td><button type="submit">UPDATE</button></td></tr>
+    </table>
+</form>
+<a href="/suppliers">Return home page</a>
+</body>
+</html>

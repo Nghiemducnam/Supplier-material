@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <a href="/suppliers-create">Create new Provider</a>
+    <h1>Providers</h1>
+    <table border="1">
+        <tr>
+            <td>Provider Name:</td>
+            <td>Provider Description:</td>
+            <td>Provider email:</td>
+            <td>Edit Provider:</td>
+            <td>Delete Provider:</td>
+            <td>Provider detail:</td>
+        </tr>
+        <th:block th:each ="supplier:${suppliers}">
+            <tr>
+                <td th:text = "${supplier.supplierName}"></td>
+                <td th:text = "${supplier.supDescription}"></td>
+                <td th:text = "${supplier.address}"></td>
+                <td><a th:href="@{/suppliers-edit/__${supplier.supplierId}__ }">Edit</a></td>
+                <td><a th:href="@{/suppliers-delete/__${supplier.supplierId}__ }">Delete</a></td>
+                <td><a th:href="@{/suppliers-detail/__${supplier.supplierId}__ }">Detail</a></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>

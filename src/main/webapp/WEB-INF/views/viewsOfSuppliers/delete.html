@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Delete this supplier</h1>
+<h2>Are you sure?</h2>
+<form method="post" th:action="@{/suppliers-delete}" th:object="${suppliers}" >
+    <input th:type="hidden" name="id" th:field="*{supplierId}"/>
+    <table>
+        <tr>
+            <td>Provider name:</td>
+            <td th:text="${suppliers.getSupplierName()}"></td>
+        </tr>
+        <tr>
+            <td>Provider Description:</td>
+            <td th:text="${suppliers.getSupDescription()}"></td>
+        </tr>
+        <tr>
+            <td>Provider Address:</td>
+            <td th:text="${suppliers.getAddress()}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Delete</button></td>
+        </tr>
+    </table>
+</form>
+<a href="/suppliers">return home page</a>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/materials-create">Create new Material</a>
+<h2>Materials list</h2>
+
+
+
+<h1>Find Supplier</h1>
+<p>
+    <a href="/suppliers">Supplier list</a>
+</p>
+<h1>Materials list</h1>
+<form>
+    Search by name:
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<br>
+
+<form>
+    <table border="1">
+        <tr>
+            <td>Material Name</td>
+            <td>Import date</td>
+            <td>Material Description</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Image</td>
+            <td>Provider</td>
+        </tr>
+    <th:block th:each="material:${materials}">
+        <tr>
+            <td th:text="${material.getName()}"></td>
+            <td th:text="${material.getImportDate()}"></td>
+            <td th:text="${material.getDescription()}"></td>
+            <td th:text="${material.getPrice()}"></td>
+            <td th:text="${material.getQuantity()}"></td>
+            <td> <img th:src="${material.image}" style="height: 200px; width: 200px"></td>
+            <td th:text="${material.getSupplier()}"></td>
+            <td><a th:href="@{/materials-edit/__${material.materialId}__ }">Edit</a></td>
+            <td><a th:href="@{/materials-delete/__${material.materialId}__ }">Delete</a></td>
+            <td><a th:href="@{/materials-detail/__${material.materialId}__ }">Detail</a></td>
+        </tr>
+        </th:block>
+    </table>
+
+    <div>
+        <a th:href="@{'/materials'(page=${materials.number - 1})}" th:if="${materials.hasPrevious()}">Previous</a>
+        <span th:text="${materials.number + 1}"></span>/<span th:text="${materials.totalPages}"></span>
+        <a th:href="@{'/materials'(page=${materials.number + 1})}" th:if="${materials.hasNext()}">Next</a>
+    </div>
+</form>
+</body>
+</html>

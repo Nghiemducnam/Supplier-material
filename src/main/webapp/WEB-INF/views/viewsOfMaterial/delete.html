@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Delete this material</h1>
+<h2>Are you sure?</h2>
+<form method="post" th:action="@{/materials-delete}" th:object="${materials}" >
+    <input th:type="hidden" name="id" th:field="*{materialId}"/>
+    <table>
+        <tr>
+            <td>Material name:</td>
+            <td th:text="${materials.getName()}"></td>
+        </tr>
+        <tr>
+            <td>Material Description:</td>
+            <td th:text="${materials.getDescription()}"></td>
+        </tr>
+        <tr>
+            <td>Import date:</td>
+            <td th:text="${materials.getImportDate()}"></td>
+        </tr>
+        <tr>
+            <td>Material Image</td>
+            <td th:text="${materials.getImage()}"></td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td th:text="${materials.getQuantity()}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Delete</button></td>
+        </tr>
+    </table>
+</form>
+<a href="/materials">return home page</a>
+</body>
+</html>
